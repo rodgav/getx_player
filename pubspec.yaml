@@ -30,6 +30,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   get:
   video_player:
+  get_version:
+    git:
+      url: https://github.com/Creky/get_version.git
 
 
 dev_dependencies:

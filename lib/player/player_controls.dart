@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_player/player/picture_in_picture.dart';
 import 'package:getx_player/player/player_controller.dart';
 import 'package:getx_player/player/slider.dart';
 import 'package:getx_player/utils/extras.dart';
@@ -16,7 +17,8 @@ class PlayerControls extends StatelessWidget {
           child: Obx(() {
             return GestureDetector(
               onTap: _.onShowControls,
-              child: AnimatedContainer( duration: Duration(milliseconds: 300),
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 300),
                 color: _.showControls ? Colors.black54 : Colors.transparent,
                 child: Stack(
                   alignment: Alignment.center,
@@ -109,6 +111,19 @@ class PlayerControls extends StatelessWidget {
                                   style: TextStyle(color: Colors.white),
                                 );
                               }),
+                              GetPlatform.isAndroid
+                                  ? PlayerButton(
+                                      onPressed: (){
+                                        PictureInPicture.instance.pip();
+                                        if(!_.fullscreen) _.onFullscreen();
+                                      },
+                                      size: 40,
+                                      iconPath: 'assets/icons/minimizar.png',
+                                      circle: false,
+                                      backgroundColor: Colors.transparent,
+                                      iconColor: Colors.white,
+                                    )
+                                  : Container(),
                               Obx(() {
                                 return PlayerButton(
                                     size: 40,
